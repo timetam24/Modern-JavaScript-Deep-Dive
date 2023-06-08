@@ -42,6 +42,37 @@ bar()
 + 단점: 앞선 태스크가 종료할 때까지 이후 태스크들이 블로킹된다.
  
 
+ <br/>
+<br/>
+<br/>
 
+### 2. 비동기처리
+<br/>
+
+예제: 타이머 함수인 setTimeout 함수는 앞선 sleep 함수와 유사하게 일정 시간 경과 이후에 콜백 함수를 호출하지만 setTimeout 함수 이후의 태스크인 bar 함수를 블로킹하지 않고 곧바로 실행한다.  
+
+<pre><code>function foo() {
+    console.log('foo');
+}
+
+function bar() {
+    console.log('bar');
+}
+
+setTimeout(foo, 5 * 1000);
+bar();
+</code></pre>
+
+<br/>
+<br/>
+
+이처럼 현재 실행 중인 태스크가 종료되지 않은 상태라 해도 다음 태스크를 곧바로 실행하는 방식을 비동기 처리라고 한다.
+
++ 장점: 블로킹이 발생하지 않는다.
++ 단점: 태스크의 실행 순서가 보장되지 않는다.
+
+<br/>
+
+=> 타이머 함수인 setTimeout과 setInterval, HTTP 요청, 이벤트 핸들러는 비동기 처리 방식으로 동작한다.
 
 
